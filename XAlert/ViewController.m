@@ -33,6 +33,7 @@
     [sheet addButtonwithTitle:@"按钮一"];
     [sheet addButtonwithTitle:@"按钮二"];
     [sheet addButtonwithTitle:@"按钮三"];
+    sheet.delegate = self;
     [sheet show];
 }
 - (IBAction)actionsheet2:(id)sender {
@@ -41,11 +42,13 @@
     [sheet addButtonwithTitle:@"按钮一"];
     [sheet addButtonwithTitle:@"按钮二"];
     [sheet addButtonwithTitle:@"按钮三"];
+    sheet.delegate = self;
     [sheet showInAnimate];
 }
 - (IBAction)AlertView1:(id)sender {
     XAlertView *alert = [[XAlertView alloc]initWithTitleAndDesc:@"这是一个警告框" Desc:@"这里可以填一些详细内容"];
     alert.btnTitleArray = @[@"按钮一",@"按钮二",@"按钮三"];
+    alert.delegate = self;
     [alert showAnimation1];
 }
 - (IBAction)AlertView2:(id)sender {
@@ -70,6 +73,9 @@
     
 }
 -(void)btnClicked:(NSInteger)index{
+    NSLog(@"%ld",(long)index);
+}
+-(void)buttonClick:(NSInteger)index{
     NSLog(@"%ld",(long)index);
 }
 @end
