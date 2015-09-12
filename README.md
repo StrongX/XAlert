@@ -4,12 +4,14 @@ XAlert
 ![image](https://github.com/StrongX/XAlert/blob/master/10.gif)
 
 ```objc
+
 - (IBAction)actionsheet1:(id)sender {
     XActionSheet *sheet = [[XActionSheet alloc]initWithTitleAndDesc:@"这是一个上啦菜单" Desc:@"你可以在这里填写一些详细内容"];
     [sheet addCancelButtonWithTitle:@"取消"];
     [sheet addButtonwithTitle:@"按钮一"];
     [sheet addButtonwithTitle:@"按钮二"];
     [sheet addButtonwithTitle:@"按钮三"];
+    sheet.delegate = self;
     [sheet show];
 }
 - (IBAction)actionsheet2:(id)sender {
@@ -18,11 +20,13 @@ XAlert
     [sheet addButtonwithTitle:@"按钮一"];
     [sheet addButtonwithTitle:@"按钮二"];
     [sheet addButtonwithTitle:@"按钮三"];
+    sheet.delegate = self;
     [sheet showInAnimate];
 }
 - (IBAction)AlertView1:(id)sender {
     XAlertView *alert = [[XAlertView alloc]initWithTitleAndDesc:@"这是一个警告框" Desc:@"这里可以填一些详细内容"];
     alert.btnTitleArray = @[@"按钮一",@"按钮二",@"按钮三"];
+    alert.delegate = self;
     [alert showAnimation1];
 }
 - (IBAction)AlertView2:(id)sender {
@@ -46,5 +50,6 @@ XAlert
     [alert showAnimation2];
     
 }
+
 
 ```
