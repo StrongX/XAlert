@@ -71,7 +71,7 @@
     [[[[UIApplication sharedApplication] windows] firstObject] addSubview:self];
     btnWidth = width*0.8/_btnTitleArray.count;
    
-    _containView.frame = CGRectMake(0, 0, width * 0.8, _containViewHeight);
+    _containView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width * 0.8, _containViewHeight)];
     bottom.frame = CGRectMake(width*0.1, -100, width * 0.8, 50 + _containViewHeight);
     
     for (int i = 0; i<_btnTitleArray.count; i++) {
