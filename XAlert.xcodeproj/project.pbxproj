@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A1B4DE21C7F55CA000E494B /* XActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B4DDF1C7F55CA000E494B /* XActionSheet.m */; };
+		2A1B4DE31C7F55CA000E494B /* XAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B4DE11C7F55CA000E494B /* XAlertView.m */; };
 		2A5ABB8C1BA4812400BD6B44 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABB8B1BA4812400BD6B44 /* main.m */; };
 		2A5ABB8F1BA4812400BD6B44 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABB8E1BA4812400BD6B44 /* AppDelegate.m */; };
 		2A5ABB921BA4812400BD6B44 /* XAlert.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABB901BA4812400BD6B44 /* XAlert.xcdatamodeld */; };
@@ -15,8 +17,6 @@
 		2A5ABB9A1BA4812400BD6B44 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABB991BA4812400BD6B44 /* Images.xcassets */; };
 		2A5ABB9D1BA4812400BD6B44 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABB9B1BA4812400BD6B44 /* LaunchScreen.xib */; };
 		2A5ABBA91BA4812400BD6B44 /* XAlertTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABBA81BA4812400BD6B44 /* XAlertTests.m */; };
-		2A5ABBB71BA4816E00BD6B44 /* XActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABBB41BA4816E00BD6B44 /* XActionSheet.m */; };
-		2A5ABBB81BA4816E00BD6B44 /* XAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABBB61BA4816E00BD6B44 /* XAlertView.m */; };
 		2A5ABBF11BA483E100BD6B44 /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABBBA1BA483E100BD6B44 /* module.modulemap */; };
 		2A5ABBF21BA483E100BD6B44 /* pop-ios-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABBBB1BA483E100BD6B44 /* pop-ios-Info.plist */; };
 		2A5ABBF31BA483E100BD6B44 /* pop-osx-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABBBC1BA483E100BD6B44 /* pop-osx-Info.plist */; };
@@ -52,6 +52,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A1B4DDE1C7F55CA000E494B /* XActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XActionSheet.h; sourceTree = "<group>"; };
+		2A1B4DDF1C7F55CA000E494B /* XActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XActionSheet.m; sourceTree = "<group>"; };
+		2A1B4DE01C7F55CA000E494B /* XAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAlertView.h; sourceTree = "<group>"; };
+		2A1B4DE11C7F55CA000E494B /* XAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAlertView.m; sourceTree = "<group>"; };
 		2A5ABB861BA4812400BD6B44 /* XAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A5ABB8A1BA4812400BD6B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A5ABB8B1BA4812400BD6B44 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -66,10 +70,6 @@
 		2A5ABBA21BA4812400BD6B44 /* XAlertTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XAlertTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A5ABBA71BA4812400BD6B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A5ABBA81BA4812400BD6B44 /* XAlertTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XAlertTests.m; sourceTree = "<group>"; };
-		2A5ABBB31BA4816E00BD6B44 /* XActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XActionSheet.h; sourceTree = "<group>"; };
-		2A5ABBB41BA4816E00BD6B44 /* XActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XActionSheet.m; sourceTree = "<group>"; };
-		2A5ABBB51BA4816E00BD6B44 /* XAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAlertView.h; sourceTree = "<group>"; };
-		2A5ABBB61BA4816E00BD6B44 /* XAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAlertView.m; sourceTree = "<group>"; };
 		2A5ABBBA1BA483E100BD6B44 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		2A5ABBBB1BA483E100BD6B44 /* pop-ios-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "pop-ios-Info.plist"; sourceTree = "<group>"; };
 		2A5ABBBC1BA483E100BD6B44 /* pop-osx-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "pop-osx-Info.plist"; sourceTree = "<group>"; };
@@ -145,6 +145,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A1B4DDD1C7F55CA000E494B /* XAlert */ = {
+			isa = PBXGroup;
+			children = (
+				2A1B4DDE1C7F55CA000E494B /* XActionSheet.h */,
+				2A1B4DDF1C7F55CA000E494B /* XActionSheet.m */,
+				2A1B4DE01C7F55CA000E494B /* XAlertView.h */,
+				2A1B4DE11C7F55CA000E494B /* XAlertView.m */,
+			);
+			path = XAlert;
+			sourceTree = "<group>";
+		};
 		2A5ABB7D1BA4812400BD6B44 = {
 			isa = PBXGroup;
 			children = (
@@ -210,11 +221,8 @@
 		2A5ABBB21BA4816E00BD6B44 /* XAlert */ = {
 			isa = PBXGroup;
 			children = (
+				2A1B4DDD1C7F55CA000E494B /* XAlert */,
 				2A5ABBB91BA483E100BD6B44 /* pop */,
-				2A5ABBB31BA4816E00BD6B44 /* XActionSheet.h */,
-				2A5ABBB41BA4816E00BD6B44 /* XActionSheet.m */,
-				2A5ABBB51BA4816E00BD6B44 /* XAlertView.h */,
-				2A5ABBB61BA4816E00BD6B44 /* XAlertView.m */,
 			);
 			path = XAlert;
 			sourceTree = "<group>";
@@ -391,6 +399,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A1B4DE21C7F55CA000E494B /* XActionSheet.m in Sources */,
 				2A5ABBFD1BA483E100BD6B44 /* POPCustomAnimation.mm in Sources */,
 				2A5ABBFF1BA483E100BD6B44 /* POPGeometry.mm in Sources */,
 				2A5ABBF71BA483E100BD6B44 /* POPAnimationExtras.mm in Sources */,
@@ -404,6 +413,7 @@
 				2A5ABBF41BA483E100BD6B44 /* POPAnimatableProperty.mm in Sources */,
 				2A5ABC031BA483E100BD6B44 /* POPSpringAnimation.mm in Sources */,
 				2A5ABB921BA4812400BD6B44 /* XAlert.xcdatamodeld in Sources */,
+				2A1B4DE31C7F55CA000E494B /* XAlertView.m in Sources */,
 				2A5ABC001BA483E100BD6B44 /* POPLayerExtras.mm in Sources */,
 				2A5ABC051BA483E100BD6B44 /* TransformationMatrix.cpp in Sources */,
 				2A5ABC041BA483E100BD6B44 /* POPVector.mm in Sources */,
@@ -413,8 +423,6 @@
 				2A5ABC011BA483E100BD6B44 /* POPMath.mm in Sources */,
 				2A5ABC021BA483E100BD6B44 /* POPPropertyAnimation.mm in Sources */,
 				2A5ABBF81BA483E100BD6B44 /* POPAnimationRuntime.mm in Sources */,
-				2A5ABBB81BA4816E00BD6B44 /* XAlertView.m in Sources */,
-				2A5ABBB71BA4816E00BD6B44 /* XActionSheet.m in Sources */,
 				2A5ABBFC1BA483E100BD6B44 /* POPCGUtils.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -612,6 +620,7 @@
 				2A5ABBAE1BA4812400BD6B44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2A5ABBAF1BA4812400BD6B44 /* Build configuration list for PBXNativeTarget "XAlertTests" */ = {
 			isa = XCConfigurationList;
@@ -620,6 +629,7 @@
 				2A5ABBB11BA4812400BD6B44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
