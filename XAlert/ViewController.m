@@ -12,7 +12,7 @@
 
 
 
-@interface ViewController ()<XAlertDelegate,XActionSheetDelegate>
+@interface ViewController ()<XAlertViewDelegate,XActionSheetDelegate>
 
 @end
 
@@ -72,10 +72,10 @@
     [alert showAnimation2];
     
 }
--(void)btnClicked:(NSInteger)index{
+-(void)actionSheet:(XActionSheet *)actionSheet buttonClick:(NSInteger)index {
     NSLog(@"%ld",(long)index);
 }
--(void)buttonClick:(NSInteger)index{
+-(void)alertView:(XAlertView *)alertView buttonClick:(NSInteger)index {
     NSLog(@"%ld",(long)index);
 }
 @end

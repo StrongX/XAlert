@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 @class XAlertView;
-@protocol XAlertDelegate <NSObject>
+@protocol XAlertViewDelegate <NSObject>
 
 @optional
--(void)btnClicked:(NSInteger)index;
+-(void)alertView:(XAlertView *)alertView buttonClick:(NSInteger)index;
 
 @end
 @interface XAlertView : UIView
@@ -29,9 +29,9 @@
 @property (nonatomic, strong) UILabel *DescLabel;
 @property (nonatomic, strong) UIView *containView;
 @property (nonatomic,       ) CGFloat containViewHeight;
-@property (nonatomic, strong) NSArray *btnTitleArray;
-@property (nonatomic, strong) NSMutableArray *btnArray;
-@property (nonatomic,       ) id<XAlertDelegate>delegate;
+@property (nonatomic, strong) NSArray<NSString *> *btnTitleArray;
+@property (nonatomic, strong) NSMutableArray<UIButton *> *btnArray;
+@property (nonatomic,       ) id<XAlertViewDelegate>delegate;
 
 
 

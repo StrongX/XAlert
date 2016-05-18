@@ -8,6 +8,7 @@
 
 #import "XAlertView.h"
 #import "POP.h"
+
 #define green_Color [UIColor colorWithRed:102.0/255.0 green:195.0/255.0 blue:165.0/255.0 alpha:1.0f]
 @implementation XAlertView
 {
@@ -33,10 +34,20 @@
     [_DescLabel setAdjustsFontSizeToFitWidth:true];
     _TitleLabel.textAlignment = NSTextAlignmentCenter;
     _DescLabel.textAlignment = NSTextAlignmentCenter;
-    _TitleLabel.frame = CGRectMake(0, 0, bottom.frame.size.width, 30);
-    _DescLabel.frame = CGRectMake(0, 30, bottom.frame.size.width, 20);
-    [_containView addSubview:_TitleLabel];
-    [_containView addSubview:_DescLabel];
+    
+    
+    //当desc为空时，不绘制descLabel的label
+    if (Desc == nil || [Desc isEqualToString:@""]) {
+        _TitleLabel.frame = CGRectMake(0, 10, bottom.frame.size.width, 30);
+        [_containView addSubview:_TitleLabel];
+    }
+    else {
+        _TitleLabel.frame = CGRectMake(0, 0, bottom.frame.size.width, 30);
+        _DescLabel.frame = CGRectMake(0, 30, bottom.frame.size.width, 20);
+        [_containView addSubview:_TitleLabel];
+        [_containView addSubview:_DescLabel];
+    }
+    
     return self;
 }
 
@@ -62,13 +73,15 @@
     [bottom addSubview:_containView];
    
     _btnArray = [[NSMutableArray alloc]init];
+    
+    _delegate = nil;
     return self;
 }
 -(void)setContainRect:(CGRect)rect{
     containRect = rect;
 }
 -(void)initUI{
-    [[[[UIApplication sharedApplication] windows] firstObject] addSubview:self];
+    [[UIApplication sharedApplication].keyWindow addSubview:self];
     btnWidth = width*0.8/_btnTitleArray.count;
    
     _containView.frame = CGRectMake(0, 0, width * 0.8, _containViewHeight);
@@ -163,6 +176,10 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self removeFromSuperview];
     });
-    [_delegate btnClicked:btn.tag];
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(alertView:buttonClick:)]) {
+        [_delegate alertView:self buttonClick:btn.tag];
+    }
+    
 }
 @end

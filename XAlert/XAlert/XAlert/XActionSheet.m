@@ -40,8 +40,27 @@
     
     titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width * 0.9, 49.5)];
     titleView.backgroundColor = [UIColor colorWithRed:(CGFloat)52/255 green:(CGFloat)170/255 blue:(CGFloat)135/255 alpha:1];
-    [titleView addSubview:_Title];
-    [titleView addSubview:_Desc];
+    
+    //无title 有desc
+    if ( (Title == nil || [Title isEqualToString:@""]) && (Desc != nil && ![Desc isEqualToString:@""]) ) {
+        _Desc.frame = CGRectMake(0, 17, width*0.9, 15);
+        [titleView addSubview:_Desc];
+    }
+    //无desc 有title
+    else if( (Title != nil && ![Title isEqualToString:@""]) && (Desc == nil || [Desc isEqualToString:@""]) ) {
+        _Title.frame = CGRectMake(0, 17, width*0.9, 15);
+        [titleView addSubview:_Title];
+    }
+    //有desc 有title
+    else if ( (Title != nil && ![Title isEqualToString:@""]) && (Desc != nil && ![Desc isEqualToString:@""]) ) {
+        
+        [titleView addSubview:_Title];
+        [titleView addSubview:_Desc];
+    }
+    //无desc 无title
+    else {
+        titleView.frame = CGRectMake(0, 0, width * 0.9, 10);
+    }
     
     return self;
 }
@@ -51,9 +70,70 @@
     _btnArray                   = [[NSMutableArray alloc]init];
     width                       = [UIScreen mainScreen].bounds.size.width;
     height                      = [UIScreen mainScreen].bounds.size.height;
+    _delegate = nil;
     InAnimate = NO;
     return self;
 }
+
+/**
+ *  设置取消按钮的背景颜色
+ *
+ *  @param color 颜色值
+ */
+- (void)setCancelButtonBackgroundColor:(UIColor *)color
+{
+    if (color) {
+        _CancelButton.backgroundColor = color;
+    }
+}
+
+/**
+ *  设置某个按钮的背景颜色
+ *
+ *  @param index 按钮的index
+ *  @param color 颜色
+ */
+- (void)setButton:(NSUInteger) index backgroundColor:(UIColor *)color
+{
+    if (index > _btnArray.count) {
+        return ;
+    }
+    
+    if (color) {
+        _btnArray[index].backgroundColor = color;
+    }
+}
+
+/**
+ *  设置所有按钮的背景颜色
+ *
+ *  @param color 颜色
+ */
+- (void)setAllButtonsBackgroundColor:(UIColor *)color
+{
+    if (color == nil) {
+        return ;
+    }
+    
+    for (UIButton *bt in _btnArray) {
+        bt.backgroundColor = color;
+    }
+}
+
+/**
+ *  设置标题背景颜色
+ *
+ *  @param color 颜色
+ */
+- (void)setTitleBackgroundColor:(UIColor *)color
+{
+    if (color) {
+        titleView.backgroundColor = color;
+    }
+}
+
+
+
 /**
  *  添加取消按钮
  */
@@ -83,9 +163,14 @@
 - (void)buttonClick:(id)sender{
 
     UIButton *btn = (UIButton *)sender;
-    [_delegate buttonClick:btn.tag];
+    if (_delegate && [_delegate respondsToSelector:@selector(actionSheet:buttonClick:)]) {
+        [_delegate actionSheet:self buttonClick:btn.tag];
+    }
+    
     [self close];
 }
+
+
 /**
  *  展示动画
  */
@@ -95,7 +180,7 @@
         bottomHeight += 50;
     }
     
-    bottomHeight += 40*_btnArray.count;
+    bottomHeight += 40*(_btnArray.count-1) + titleView.frame.size.height;
     
     bottom = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width*0.9, bottomHeight)];
     bottom.layer.cornerRadius = 5;
@@ -112,7 +197,12 @@
     CGFloat btnY = 0;
     if (titleView) {
         [bottom addSubview:titleView];
-        btnY +=50;
+        btnY += titleView.frame.size.height;
+        
+        //如果titleView中有内容
+        if (titleView.subviews.count > 0) {
+            btnY += 1;
+        }
     }
     for (UIButton *btn in _btnArray) {
         CGRect rect = CGRectMake(0, btnY, width * 0.9, 39.5);
@@ -131,7 +221,7 @@
     }
     
    
-    [[[[UIApplication sharedApplication] windows] firstObject] addSubview:self];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:self];
     layView = [[UIView alloc]initWithFrame:self.frame];
     layView.backgroundColor = [UIColor grayColor];
     layView.alpha = 0;
@@ -148,7 +238,7 @@
 }
 - (void)showInAnimate{
     
-    [[[[UIApplication sharedApplication] windows] firstObject] addSubview:self];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:self];
     layView = [[UIView alloc]initWithFrame:self.frame];
     layView.backgroundColor = [UIColor grayColor];
     layView.alpha = 0;
@@ -182,6 +272,7 @@
         [self addSubview:_CancelButton];
         btnY -= 48;
     }
+    btnY += 40;
     for (int j = (int)viewArray.count - 1; j >= 0; j--) {
         UIView *btn = (UIView *)viewArray[j];
         CGFloat x;
@@ -193,15 +284,20 @@
             i = 1;
         }
         if (j==0 && titleView) {
-            CGRect rect = CGRectMake(x, btnY, width*0.9, 49.5);
+            btnY -= titleView.frame.size.height;
+            CGRect rect = CGRectMake(x, btnY, width*0.9, titleView.frame.size.height);
             btn.frame = rect;
         }else{
+            btnY -= 40;
             CGRect rect = CGRectMake(x, btnY, width*0.9, 39.5);
             btn.frame = rect;
         }
-        btnY -= 40;
         if (j == 1) {
-            btnY -= 10; //当为倒数第二个时  也就是接下来是第一个title Y往上多移10
+            
+            //如果titleView中有内容
+            if (titleView.subviews.count > 0) {
+                btnY -= 3; //当为倒数第二个时  也就是接下来是第一个title Y往上多移10
+            }
         }
         [self addSubview:btn];
     }
