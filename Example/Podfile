@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'XAlert_Example' do
+  pod 'XAlert', :path => '../'
+
+  target 'XAlert_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
