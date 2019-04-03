@@ -1,7 +1,7 @@
 {
   "name": "XAlert",
   "version": "0.1.0",
-  "summary": "A short description of XAlert.",
+  "summary": "一个自定义的Alert提示框",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/StrongX/XAlert",
   "license": {
@@ -18,5 +18,10 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "XAlert/Classes/**/*"
+  "source_files": "XAlert/Classes/**/*",
+  "dependencies": {
+    "pop": [
+
+    ]
+  }
 }

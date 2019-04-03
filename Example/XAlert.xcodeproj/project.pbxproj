@@ -23,6 +23,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		9FCE00AE2254DAE400F815D3 /* cute_girl.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FCE00AD2254DAE400F815D3 /* cute_girl.png */; };
 		CB161206FF0603281771DE7C /* Pods_XAlert_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D779306E95FA952793841E2A /* Pods_XAlert_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,11 +38,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00A684056E3FA391B874373A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		00A684056E3FA391B874373A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		3A6B94B321D44400C95DD571 /* Pods-XAlert_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XAlert_Example.release.xcconfig"; path = "Target Support Files/Pods-XAlert_Example/Pods-XAlert_Example.release.xcconfig"; sourceTree = "<group>"; };
-		43024196FF16466049F4EEA0 /* XAlert.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = XAlert.podspec; path = ../XAlert.podspec; sourceTree = "<group>"; };
+		43024196FF16466049F4EEA0 /* XAlert.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = XAlert.podspec; path = ../XAlert.podspec; sourceTree = "<group>"; };
 		44B25E822206F75CBDA87D4A /* Pods-XAlert_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XAlert_Example.debug.xcconfig"; path = "Target Support Files/Pods-XAlert_Example/Pods-XAlert_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		4E76F1AA49E7C777498CE966 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		4E76F1AA49E7C777498CE966 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		593D0B01A9A3B3C80098D965 /* Pods_XAlert_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XAlert_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* XAlert_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XAlert_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -65,6 +66,7 @@
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81A7442437B8FFAF0951C3CD /* Pods-XAlert_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XAlert_Tests.release.xcconfig"; path = "Target Support Files/Pods-XAlert_Tests/Pods-XAlert_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9FCE00AD2254DAE400F815D3 /* cute_girl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cute_girl.png; sourceTree = "<group>"; };
 		BE7355E8330D08B59AA3F973 /* Pods-XAlert_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XAlert_Tests.debug.xcconfig"; path = "Target Support Files/Pods-XAlert_Tests/Pods-XAlert_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D779306E95FA952793841E2A /* Pods_XAlert_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XAlert_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -103,7 +105,6 @@
 				BE7355E8330D08B59AA3F973 /* Pods-XAlert_Tests.debug.xcconfig */,
 				81A7442437B8FFAF0951C3CD /* Pods-XAlert_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -144,6 +145,7 @@
 		6003F593195388D20070C39A /* Example for XAlert */ = {
 			isa = PBXGroup;
 			children = (
+				9FCE00AD2254DAE400F815D3 /* cute_girl.png */,
 				6003F59C195388D20070C39A /* XAppDelegate.h */,
 				6003F59D195388D20070C39A /* XAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -277,6 +279,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FCE00AE2254DAE400F815D3 /* cute_girl.png in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
@@ -349,12 +352,14 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-XAlert_Example/Pods-XAlert_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/XAlert/XAlert.framework",
+				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XAlert.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

@@ -10,6 +10,9 @@
 #endif
 #endif
 
+#import "XActionSheet.h"
+#import "XAlert.h"
+#import "XAlertView.h"
 
 FOUNDATION_EXPORT double XAlertVersionNumber;
 FOUNDATION_EXPORT const unsigned char XAlertVersionString[];
