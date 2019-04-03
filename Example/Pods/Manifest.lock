@@ -1,0 +1,16 @@
+PODS:
+  - XAlert (0.1.0)
+
+DEPENDENCIES:
+  - XAlert (from `../`)
+
+EXTERNAL SOURCES:
+  XAlert:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  XAlert: 89083b1e4860740802755b1431319b00d4d3d9d4
+
+PODFILE CHECKSUM: 907905924b012eb3de0705d864f8d45bb2701da9
+
+COCOAPODS: 1.6.0.beta.1

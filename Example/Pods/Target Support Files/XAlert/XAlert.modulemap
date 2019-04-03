@@ -1,0 +1,6 @@
+framework module XAlert {
+  umbrella header "XAlert-umbrella.h"
+
+  export *
+  module * { export * }
+}
