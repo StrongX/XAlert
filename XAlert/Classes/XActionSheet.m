@@ -227,7 +227,7 @@
     [self addSubview:allBottom];
     
     [UIView animateWithDuration:0.2 animations:^{
-        allBottom.frame = CGRectMake(width*0.05, height - bottomHeight, width*0.9, bottomHeight);
+        self->allBottom.frame = CGRectMake(self->width*0.05, self->height - bottomHeight, self->width*0.9, bottomHeight);
     }];
 }
 - (void)showInAnimate{
@@ -303,16 +303,16 @@
        for (UIView *view in viewArray) {
            [UIView addKeyframeWithRelativeStartTime:delay relativeDuration:0.3 animations:^{
                CGRect rect = view.frame;
-               rect.origin.x = width * 0.05;
+               rect.origin.x = self->width * 0.05;
                view.frame = rect;
            }];
            delay = delay + 0.2;
        }
-       if (_CancelButton) {
+       if (self->_CancelButton) {
            [UIView addKeyframeWithRelativeStartTime:delay relativeDuration:0.2 animations:^{
-               CGRect rect = _CancelButton.frame;
-               rect.origin.x = width * 0.05;
-               _CancelButton.frame = rect;
+               CGRect rect = self->_CancelButton.frame;
+               rect.origin.x = self->width * 0.05;
+               self->_CancelButton.frame = rect;
            }];
            delay = delay + 0.2;
        }
@@ -331,7 +331,7 @@
     layView.alpha = 0;
     [self addSubview:layView];
     [UIView animateWithDuration:0.2 animations:^{
-        layView.alpha = 0.2;
+        self->layView.alpha = 0.2;
     }];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(close)];
     [layView addGestureRecognizer:tap];
@@ -346,10 +346,10 @@
         return;
     }
     [UIView animateWithDuration:0.2 animations:^{
-        CGRect rect = allBottom.frame;
-        rect.origin.y = height;
-        allBottom.frame = rect;
-        layView.alpha = 0;
+        CGRect rect = self->allBottom.frame;
+        rect.origin.y = self->height;
+        self->allBottom.frame = rect;
+        self->layView.alpha = 0;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
@@ -382,10 +382,10 @@
         for (UIView *view in viewArray) {
             __block CGRect rect = view.frame;
             if (i) {
-                rect.origin.x = -width*0.9;
+                rect.origin.x = -self->width*0.9;
                 i = 0;
             }else{
-                rect.origin.x = width;
+                rect.origin.x = self->width;
                 i = 1;
             }
             [UIView addKeyframeWithRelativeStartTime:delay relativeDuration:0.2 animations:^{
@@ -398,7 +398,7 @@
     }];
     
     [UIView animateWithDuration:0.2 animations:^{
-        layView.alpha = 0;
+        self->layView.alpha = 0;
     }];
 
 }

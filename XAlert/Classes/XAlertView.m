@@ -107,7 +107,7 @@
     [bottom addSubview:sp];
     
     [UIView animateWithDuration:0.2 animations:^{
-        layView.alpha = 0.4;
+        self->layView.alpha = 0.4;
     }];
 }
 -(void)showAnimation1{
@@ -141,7 +141,7 @@
 }
 -(void)showAction2{
     [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        bottom.frame = CGRectMake(width * 0.1, (height - _containViewHeight - 50)/2, width * 0.8, _containViewHeight + 50);
+        self->bottom.frame = CGRectMake(self->width * 0.1, (self->height - self->_containViewHeight - 50)/2, self->width * 0.8, self->_containViewHeight + 50);
     } completion:^(BOOL finished) {
         
     }];
