@@ -11,7 +11,7 @@
 
 
 
-@interface  XViewController()<XAlertViewDelegate,XActionSheetDelegate>
+@interface  XViewController()<XAlertViewDelegate>
 
 @end
 
@@ -44,13 +44,13 @@
     [alert show];
 }
 - (IBAction)actionsheet2:(id)sender {
-    XActionSheet *sheet = [[XActionSheet alloc]initWithTitleAndDesc:@"这是一个上啦菜单" Desc:@"你可以在这里填写一些详细内容"];
-    [sheet addCancelButtonWithTitle:@"取消"];
-    [sheet addButtonwithTitle:@"按钮一"];
-    [sheet addButtonwithTitle:@"按钮二"];
-    [sheet addButtonwithTitle:@"按钮三"];
-    sheet.delegate = self;
-    [sheet showInAnimate];
+//    XActionSheet *sheet = [[XActionSheet alloc]initWithTitleAndDesc:@"这是一个上啦菜单" Desc:@"你可以在这里填写一些详细内容"];
+//    [sheet addCancelButtonWithTitle:@"取消"];
+//    [sheet addButtonwithTitle:@"按钮一"];
+//    [sheet addButtonwithTitle:@"按钮二"];
+//    [sheet addButtonwithTitle:@"按钮三"];
+//    sheet.delegate = self;
+//    [sheet showInAnimate];
 }
 - (IBAction)AlertView1:(id)sender {
     XAlertView *alert = [[XAlertView alloc]initWithTitleAndDesc:@"这是一个警告框" Desc:@"这里可以填一些详细内容"];

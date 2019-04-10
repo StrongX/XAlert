@@ -8,6 +8,18 @@
 
 #import "XActionSheet.h"
 
+@interface XActionSheetButton : UIButton
+
+@property (nonatomic, strong) void(^handler)(void);
+
+@end
+
+@implementation XActionSheetButton
+
+
+@end
+
+
 @interface XActionSheet ()
 {
     CGFloat width;
@@ -70,7 +82,6 @@
     _btnArray                   = [[NSMutableArray alloc]init];
     width                       = [UIScreen mainScreen].bounds.size.width;
     height                      = [UIScreen mainScreen].bounds.size.height;
-    _delegate = nil;
     InAnimate = NO;
     return self;
 }
@@ -149,26 +160,26 @@
 /**
  *  添加按钮
  */
--(void)addButtonwithTitle:(NSString *)Title{
+-(void)addButtonwithTitle:(NSString *)Title handler:(void(^)(void))handler{
     
-    UIButton *btn = [[UIButton alloc]init];
+    XActionSheetButton *btn = [[XActionSheetButton alloc]init];
     btn.tag = _btnArray.count;
     [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     btn.backgroundColor = greenColor;
     [btn setTitle:Title forState:normal];
     [btn setTitleColor:buttonTextColor forState:0];
     [_btnArray addObject:btn];
+    btn.handler = handler;
 }
 /**
  *  按钮点击动作
  */
 - (void)buttonClick:(id)sender{
 
-    UIButton *btn = (UIButton *)sender;
-    if (_delegate && [_delegate respondsToSelector:@selector(actionSheet:buttonClick:)]) {
-        [_delegate actionSheet:self buttonClick:btn.tag];
+    XActionSheetButton *btn = (XActionSheetButton *)sender;
+    if (btn.handler) {
+        btn.handler();
     }
-    
     [self close];
 }
 

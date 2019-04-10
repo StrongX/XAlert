@@ -14,17 +14,12 @@
 #define buttonTextColor  [UIColor whiteColor]
 #define titleTextColor  [UIColor whiteColor]
 
-@class XActionSheet;
-@protocol XActionSheetDelegate <NSObject>
-@optional
--(void)actionSheet:(XActionSheet *)actionSheet buttonClick:(NSInteger)index;
 
-@end
 @interface XActionSheet : UIView
 
 - (id)initWithTitleAndDesc:(NSString *)Title Desc:(NSString *)Desc;
 - (void)addCancelButtonWithTitle:(NSString *)Title;
-- (void)addButtonwithTitle:(NSString *)Title;
+- (void)addButtonwithTitle:(NSString *)Title handler:(void(^)(void))handler;
 - (void)show;
 - (void)showInAnimate;
 - (void)close;
@@ -64,5 +59,4 @@
 @property (nonatomic, strong) UIButton *CancelButton;
 @property (nonatomic, strong) NSMutableArray<UIButton *> *btnArray;
 
-@property (nonatomic, assign) id<XActionSheetDelegate>delegate;
 @end

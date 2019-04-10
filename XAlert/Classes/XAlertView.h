@@ -35,7 +35,7 @@
 @property (nonatomic,       ) CGFloat containViewHeight;
 @property (nonatomic, strong) NSArray<NSString *> *btnTitleArray;
 @property (nonatomic, strong) NSMutableArray<UIButton *> *btnArray;
-@property (nonatomic,       ) id<XAlertViewDelegate>delegate;
+@property (nonatomic, weak) id<XAlertViewDelegate>delegate;
 
 
 
