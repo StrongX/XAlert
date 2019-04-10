@@ -1,6 +1,6 @@
 PODS:
   - pop (1.0.12)
-  - XAlert (0.1.0):
+  - XAlert (0.1.1):
     - pop
 
 DEPENDENCIES:
@@ -16,7 +16,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
-  XAlert: 89061be33520256cca4b19e6da085369c43be1b7
+  XAlert: 3ff5677a3ebcd9f27bc606342c0c9fa2fa06f085
 
 PODFILE CHECKSUM: 907905924b012eb3de0705d864f8d45bb2701da9
 

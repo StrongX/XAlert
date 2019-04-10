@@ -27,13 +27,21 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)actionsheet1:(id)sender {
-    XActionSheet *sheet = [[XActionSheet alloc]initWithTitleAndDesc:@"这是一个上啦菜单" Desc:@"你可以在这里填写一些详细内容"];
-    [sheet addCancelButtonWithTitle:@"取消"];
-    [sheet addButtonwithTitle:@"按钮一"];
-    [sheet addButtonwithTitle:@"按钮二"];
-    [sheet addButtonwithTitle:@"按钮三"];
-    sheet.delegate = self;
-    [sheet show];
+    
+    XAlert *alert = [XAlert alertControllerWithTitle:@"这是一个上拉菜单" message:@"你可以在这里填写一些详细内容" preferredStyle:XAlertStyleActionSheet];
+    [alert addAction:[XAlertAction actionWithTitle:@"按钮一" style:XAlertActionStyleDefault handler:^{
+        NSLog(@"按钮一，XAlert with animateNormal");
+    }]];
+    [alert addAction:[XAlertAction actionWithTitle:@"按钮二" style:XAlertActionStyleDefault handler:^{
+        NSLog(@"按钮二，XAlert with animateNormal");
+    }]];
+    [alert addAction:[XAlertAction actionWithTitle:@"按钮三" style:XAlertActionStyleDefault handler:^{
+        NSLog(@"按钮三，XAlert with animateNormal");
+    }]];
+    [alert addAction:[XAlertAction actionWithTitle:@"取消" style:XAlertActionStyleCancel handler:^{
+        NSLog(@"取消，XAlert with animateNormal");
+    }]];
+    [alert show];
 }
 - (IBAction)actionsheet2:(id)sender {
     XActionSheet *sheet = [[XActionSheet alloc]initWithTitleAndDesc:@"这是一个上啦菜单" Desc:@"你可以在这里填写一些详细内容"];
