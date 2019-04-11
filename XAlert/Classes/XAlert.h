@@ -40,9 +40,11 @@ typedef enum : NSUInteger {
 
 - (void)addAction:(XAlertAction *)action;
 
--(void)show;
+- (void)setContainView:(UIView *)containView;
 
--(void)showWithAnimateStyle:(XAlertAnimateStyle)style;
+- (void)show;
+
+- (void)showWithAnimateStyle:(XAlertAnimateStyle)style;
 
 @property (nonatomic, assign, readonly) XAlertStyle style;
 

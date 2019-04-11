@@ -74,24 +74,32 @@
     [alert showWithAnimateStyle:XAlertAnimateStyleCurve];
 }
 - (IBAction)AlertView2:(id)sender {
-//    XAlertView *alert = [[XAlertView alloc]init];
-//    alert.containViewHeight = 100;
-//    CGFloat width = alert.containView.frame.size.width;
-//    UIImageView *avatar = [[UIImageView alloc]initWithFrame:CGRectMake((width - 60)/2, 10, 60, 60)];
-//    avatar.layer.cornerRadius = 30;
-//    avatar.layer.masksToBounds = true;
-//    avatar.image = [UIImage imageNamed:@"cute_girl"];
-//    [alert.containView addSubview:avatar];
-//    
-//    UILabel *name = [[UILabel alloc]initWithFrame:CGRectMake(0, 10 + 60 + 10,width, 20)];
-//    name.text = @"StrongX";
-//    name.textColor = [UIColor darkGrayColor];
-//    name.textAlignment = NSTextAlignmentCenter;
-//    [alert.containView addSubview:name];
-//    
-//    alert.btnTitleArray = @[@"确定",@"关闭"];
-//    alert.delegate = self;
-//    [alert showAnimation2];
+    XAlert *alert = [XAlert alertControllerWithTitle:@"这是一个警告框" message:@"这里可以填一些详细内容" preferredStyle:XAlertStyleAlertView];
+    [alert addAction:[XAlertAction actionWithTitle:@"确定" style:XAlertActionStyleDefault handler:^{
+        NSLog(@"确定，XAlert with animateNormal");
+    }]];
+    [alert addAction:[XAlertAction actionWithTitle:@"关闭" style:XAlertActionStyleDefault handler:^{
+        NSLog(@"关闭，XAlert with animateNormal");
+    }]];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+    
+    
+    
+    UIImageView *avatar = [[UIImageView alloc]initWithFrame:CGRectMake(20, 10, 60, 60)];
+    avatar.layer.cornerRadius = 30;
+    avatar.layer.masksToBounds = true;
+    avatar.image = [UIImage imageNamed:@"cute_girl"];
+    [view addSubview:avatar];
+    
+    UILabel *name = [[UILabel alloc]initWithFrame:CGRectMake(0, 10 + 60 + 10,100, 20)];
+    name.text = @"StrongX";
+    name.textColor = [UIColor darkGrayColor];
+    name.textAlignment = NSTextAlignmentCenter;
+    [view addSubview:name];
+    
+    [alert setContainView:view];
+    
+    [alert showWithAnimateStyle:XAlertAnimateStyleFold];
     
 }
 

@@ -57,6 +57,16 @@
         }
     }
 }
+-(void)setContainView:(UIView *)containView{
+    self.alertView.containViewHeight = CGRectGetHeight(containView.frame);
+    CGRect rect = containView.frame;
+    rect.origin.y = 0;
+    rect.origin.x = CGRectGetWidth(self.alertView.containView.frame)/2-CGRectGetWidth(containView.frame)/2;
+    containView.frame = rect;
+    [self.alertView.containView addSubview:containView];
+    self.alertView.TitleLabel.hidden = true;
+    self.alertView.DescLabel.hidden = true;
+}
 -(void)show{
     if(_style == XAlertStyleAlertView){
         [self showWithAnimateStyle:XAlertAnimateStyleCurve];
