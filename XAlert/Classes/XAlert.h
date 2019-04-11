@@ -17,14 +17,16 @@ typedef enum : NSUInteger {
 } XAlertActionStyle;
 
 typedef enum : NSUInteger {
-    
-    XAlertAnimateStyleNormal =          1<<0,
-   
+    //ActionSheet Animation
+    XAlertAnimateStyleNormal          =          1<<0,
+    XAlertAnimateStyleTranslation     =          1<<1,
+    XAlertAnimateStyleCurve           =          1<<2,
+    XAlertAnimateStyleFold            =          1<<3,
+
 } XAlertAnimateStyle;
 
 @interface XAlertAction : NSObject
 
-#warning 这里没有处理handler为空的情况
 
 + (instancetype)actionWithTitle:(nullable NSString *)title style:(XAlertActionStyle)style handler:(void (^)(void))handler;
 

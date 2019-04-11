@@ -9,6 +9,26 @@
 #import "XAlertView.h"
 #import "POP.h"
 
+
+@interface XAlertViewButton : UIButton
+
+@property (nonatomic, strong) void(^handler)(void);
+
+@end
+
+@implementation XAlertViewButton
+
+
+
+@end
+
+@interface XAlertView()
+
+@property (nonatomic, strong) NSMutableArray<NSDictionary *> *btnTitleArray;
+@property (nonatomic, strong) NSMutableArray<UIButton *> *btnArray;
+
+@end
+
 @implementation XAlertView
 {
     CGRect containRect;
@@ -49,7 +69,9 @@
     
     return self;
 }
-
+-(void)addButtonWithTitle:(NSString *)title handler:(void (^)(void))handler{
+    [self.btnTitleArray addObject:@{@"title":title,@"handler":handler}];
+}
 -(id)init{
     self = [super init];
     width = [UIScreen mainScreen].bounds.size.width;
@@ -70,10 +92,7 @@
     
     _containView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width * 0.8, _containViewHeight)];
     [bottom addSubview:_containView];
-   
-    _btnArray = [[NSMutableArray alloc]init];
     
-    _delegate = nil;
     return self;
 }
 -(void)setContainRect:(CGRect)rect{
@@ -87,14 +106,16 @@
     bottom.frame = CGRectMake(width*0.1, -100, width * 0.8, 50 + _containViewHeight);
     
     for (int i = 0; i<_btnTitleArray.count; i++) {
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(i*btnWidth, _containViewHeight + 10, btnWidth, 40)];
-        [btn setTitle:_btnTitleArray[i] forState:normal];
+        XAlertViewButton *btn = [[XAlertViewButton alloc]initWithFrame:CGRectMake(i*btnWidth, _containViewHeight + 10, btnWidth, 40)];
+        NSDictionary *dict = _btnTitleArray[i];
+        btn.handler = dict[@"handler"];
+        [btn setTitle:dict[@"title"] forState:normal];
         [btn setTitleColor:green_Color forState:normal];
         btn.titleLabel.font = [UIFont systemFontOfSize:14];
         [bottom addSubview:btn];
         [btn addTarget:self action:@selector(closeAction1:) forControlEvents:UIControlEventTouchUpInside];
-        btn.tag = _btnArray.count;
-        [_btnArray addObject:btn];
+        btn.tag = self.btnArray.count;
+        [self.btnArray addObject:btn];
         if (i != 0) {
             UIView *sp = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1, 40)];
             sp.backgroundColor = green_Color;
@@ -146,7 +167,7 @@
         
     }];
 }
--(void)closeAction1:(UIButton *)btn{
+-(void)closeAction1:(XAlertViewButton *)btn{
     POPBasicAnimation *transform = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerRotation];
     transform.fromValue = @(0);
     transform.toValue = @(M_PI/2);
@@ -176,9 +197,24 @@
         [self removeFromSuperview];
     });
     
-    if (_delegate && [_delegate respondsToSelector:@selector(alertView:buttonClick:)]) {
-        [_delegate alertView:self buttonClick:btn.tag];
+    if (btn.handler) {
+        btn.handler();
     }
-    
 }
+
+#pragma mark - getter & setter
+
+-(NSMutableArray *)btnArray{
+    if (!_btnArray) {
+        _btnArray = [@[] mutableCopy];
+    }
+    return _btnArray;
+}
+-(NSMutableArray *)btnTitleArray{
+    if (!_btnTitleArray) {
+        _btnTitleArray = [@[] mutableCopy];
+    }
+    return _btnTitleArray;
+}
+
 @end

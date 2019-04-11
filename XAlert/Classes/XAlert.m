@@ -48,7 +48,7 @@
 }
 - (void)addAction:(XAlertAction *)action{
     if (self.style == XAlertStyleAlertView) {
-        
+        [self.alertView addButtonWithTitle:action.title handler:action.handler];
     }else{
         if (action.style == XAlertActionStyleDefault) {
             [self.actionSheet addButtonwithTitle:action.title handler:action.handler];
@@ -58,13 +58,21 @@
     }
 }
 -(void)show{
-    [self showWithAnimateStyle:XAlertAnimateStyleNormal];
+    if(_style == XAlertStyleAlertView){
+        [self showWithAnimateStyle:XAlertAnimateStyleCurve];
+    }else{
+        [self showWithAnimateStyle:XAlertAnimateStyleNormal];
+    }
 }
 -(void)showWithAnimateStyle:(XAlertAnimateStyle)style{
     if (style == XAlertAnimateStyleNormal) {
-        if (_style == XAlertStyleActionSheet) {
-            [self.actionSheet show];
-        }
+        [self.actionSheet show];
+    }else if (style == XAlertAnimateStyleTranslation){
+        [self.actionSheet showInAnimate];
+    }else if (style == XAlertAnimateStyleCurve){
+        [self.alertView showAnimation1];
+    }else if (style == XAlertAnimateStyleFold){
+        [self.alertView showAnimation2];
     }
 }
 
@@ -77,6 +85,11 @@
     return _actionSheet;
 }
 
-
+-(XAlertView *)alertView{
+    if (!_alertView) {
+        _alertView = [[XAlertView alloc]initWithTitleAndDesc:_title Desc:_message];
+    }
+    return _alertView;
+}
 
 @end
