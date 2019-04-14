@@ -31,7 +31,6 @@
 
 @implementation XAlertView
 {
-    CGRect containRect;
     UIView *bottom;
     UIView *layView;
     CGFloat width;
@@ -94,9 +93,6 @@
     [bottom addSubview:_containView];
     
     return self;
-}
--(void)setContainRect:(CGRect)rect{
-    containRect = rect;
 }
 -(void)initUI{
     [[UIApplication sharedApplication].keyWindow addSubview:self];

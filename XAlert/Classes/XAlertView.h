@@ -20,7 +20,6 @@
 -(id)initWithTitleAndDesc:(NSString *)Title Desc:(NSString *)Desc;
 
 
--(void)setContainRect:(CGRect)rect;
 
 -(void)showAnimation1;
 
