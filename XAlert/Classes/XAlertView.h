@@ -7,16 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XAlert.h"
+
+@class XAlert;
 
 #define green_Color [UIColor colorWithRed:102.0/255.0 green:195.0/255.0 blue:165.0/255.0 alpha:1.0f]
 
 
 
-@interface XAlertView : UIView
+@interface XAlertView : XAlert
 
 -(id)initWithTitleAndDesc:(NSString *)Title Desc:(NSString *)Desc;
 
--(void)addButtonWithTitle:(NSString *)title handler:(void(^)(void))handler;
 
 -(void)setContainRect:(CGRect)rect;
 

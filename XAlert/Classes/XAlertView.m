@@ -202,6 +202,36 @@
     }
 }
 
+#pragma mark - implementation from XAlert
+
+-(void)addAction:(XAlertAction *)action{
+    [self addButtonWithTitle:action.title handler:action.handler];
+}
+
+-(void)setContainView:(UIView *)containView{
+    self.containViewHeight = CGRectGetHeight(containView.frame);
+    CGRect rect = containView.frame;
+    rect.origin.y = 0;
+    rect.origin.x = CGRectGetWidth(self.containView.frame)/2-CGRectGetWidth(containView.frame)/2;
+    containView.frame = rect;
+    [self.containView addSubview:containView];
+    self.TitleLabel.hidden = true;
+    self.DescLabel.hidden = true;
+}
+-(void)show{
+    [self showWithAnimateStyle:XAlertAnimateStyleCurve];
+}
+-(void)showWithAnimateStyle:(XAlertAnimateStyle)style{
+    if (style == XAlertAnimateStyleCurve){
+        [self showAnimation1];
+    }else if (style == XAlertAnimateStyleFold){
+        [self showAnimation2];
+    }else{
+        [self show];
+    }
+}
+
+
 #pragma mark - getter & setter
 
 -(NSMutableArray *)btnArray{

@@ -424,6 +424,25 @@
     maskLayer.path = maskPath.CGPath;
     view.layer.mask = maskLayer;
 }
+
+
+#pragma mark - implementation from XAlert
+
+-(void)addAction:(XAlertAction *)action{
+    if (action.style == XAlertActionStyleDefault) {
+        [self addButtonwithTitle:action.title handler:action.handler];
+    }else if (action.style == XAlertActionStyleCancel){
+        [self addCancelButtonWithTitle:action.title];
+    }
+}
+-(void)showWithAnimateStyle:(XAlertAnimateStyle)style{
+    if (style == XAlertAnimateStyleNormal) {
+        [self show];
+    }else if (style == XAlertAnimateStyleTranslation){
+        [self showInAnimate];
+    }
+}
+
 @end
 
 

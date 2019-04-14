@@ -30,13 +30,13 @@
     
     XAlert *alert = [XAlert alertControllerWithTitle:@"这是一个上拉菜单" message:@"你可以在这里填写一些详细内容" preferredStyle:XAlertStyleActionSheet];
     [alert addAction:[XAlertAction actionWithTitle:@"按钮一" style:XAlertActionStyleDefault handler:^{
-        NSLog(@"按钮一，XAlert with animateNormal");
+        NSLog(@"按钮一，actionsheet with animateNormal");
     }]];
     [alert addAction:[XAlertAction actionWithTitle:@"按钮二" style:XAlertActionStyleDefault handler:^{
-        NSLog(@"按钮二，XAlert with animateNormal");
+        NSLog(@"按钮二，actionsheet with animateNormal");
     }]];
     [alert addAction:[XAlertAction actionWithTitle:@"按钮三" style:XAlertActionStyleDefault handler:^{
-        NSLog(@"按钮三，XAlert with animateNormal");
+        NSLog(@"按钮三，actionsheet with animateNormal");
     }]];
     [alert addAction:[XAlertAction actionWithTitle:@"取消" style:XAlertActionStyleCancel handler:^{
         NSLog(@"取消，actionsheet cancel");

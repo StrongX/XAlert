@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XAlert.h"
 
 #define greenColor [UIColor colorWithRed:(CGFloat)52/255 green:(CGFloat)170/255 blue:(CGFloat)135/255 alpha:1]
 #define brownColor [UIColor brownColor]
@@ -15,7 +16,7 @@
 #define titleTextColor  [UIColor whiteColor]
 
 
-@interface XActionSheet : UIView
+@interface XActionSheet : XAlert
 
 - (id)initWithTitleAndDesc:(NSString *)Title Desc:(NSString *)Desc;
 - (void)addCancelButtonWithTitle:(NSString *)Title;

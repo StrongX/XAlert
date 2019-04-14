@@ -1,7 +1,6 @@
 
 #import <UIKit/UIKit.h>
-#import "XAlertView.h"
-#import "XActionSheet.h"
+
 
 typedef enum : NSUInteger {
     XAlertStyleAlertView,
@@ -30,17 +29,26 @@ typedef enum : NSUInteger {
 
 + (instancetype)actionWithTitle:(nullable NSString *)title style:(XAlertActionStyle)style handler:(void (^)(void))handler;
 
+
+
+@property (nonatomic, readonly) XAlertActionStyle style;
+
+@property (nullable, nonatomic, readonly) NSString *title;
+
+@property (nonatomic, strong, readonly) void(^handler)(void);
+
+
 @end
 
 
 
-@interface XAlert : NSObject
+@interface XAlert : UIView
 
 + (instancetype)alertControllerWithTitle:(nullable NSString *)title message:(nullable NSString *)message preferredStyle:(XAlertStyle)preferredStyle;
 
 - (void)addAction:(XAlertAction *)action;
 
-- (void)setContainView:(UIView *)containView;
+- (void)setContainView:(UIView *)containView; //  只有style == XAlertStyleAlertView 才实现了此方法
 
 - (void)show;
 
