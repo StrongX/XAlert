@@ -17,6 +17,7 @@
 @implementation XActionSheetButton
 
 
+
 @end
 
 
@@ -24,12 +25,16 @@
 {
     CGFloat width;
     CGFloat height;
-    UIView *titleView;
-    UIView *bottom;
-    UIView *allBottom;
-    UIView *layView;
+    CGFloat bottomHeight;
     BOOL InAnimate;
 }
+
+@property (nonatomic, strong) UIView *bottom;
+@property (nonatomic, strong) UIView *allBottom;
+@property (nonatomic, strong) UIView *titleView;
+@property (nonatomic, strong) UIView *layView;
+
+
 @end
 
 @implementation XActionSheet
@@ -50,28 +55,26 @@
     _Desc.textAlignment = NSTextAlignmentCenter;
     _Desc.text = Desc;
     
-    titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width * 0.9, 49.5)];
-    titleView.backgroundColor = greenColor;
     
     //无title 有desc
     if ( (Title == nil || [Title isEqualToString:@""]) && (Desc != nil && ![Desc isEqualToString:@""]) ) {
         _Desc.frame = CGRectMake(0, 17, width*0.9, 15);
-        [titleView addSubview:_Desc];
+        [self.titleView addSubview:_Desc];
     }
     //无desc 有title
     else if( (Title != nil && ![Title isEqualToString:@""]) && (Desc == nil || [Desc isEqualToString:@""]) ) {
         _Title.frame = CGRectMake(0, 17, width*0.9, 15);
-        [titleView addSubview:_Title];
+        [self.titleView addSubview:_Title];
     }
     //有desc 有title
     else if ( (Title != nil && ![Title isEqualToString:@""]) && (Desc != nil && ![Desc isEqualToString:@""]) ) {
         
-        [titleView addSubview:_Title];
-        [titleView addSubview:_Desc];
+        [self.titleView addSubview:_Title];
+        [self.titleView addSubview:_Desc];
     }
     //无desc 无title
     else {
-        titleView.frame = CGRectMake(0, 0, width * 0.9, 10);
+        self.titleView.frame = CGRectMake(0, 0, width * 0.9, 10);
     }
     
     return self;
@@ -139,7 +142,7 @@
 - (void)setTitleBackgroundColor:(UIColor *)color
 {
     if (color) {
-        titleView.backgroundColor = color;
+        self.titleView.backgroundColor = color;
     }
 }
 
@@ -188,57 +191,52 @@
  *  展示动画
  */
 - (void)show{
-    CGFloat bottomHeight = 0;
-    if (titleView) {
+    if (self.titleView) {
         bottomHeight += 50;
     }
     
-    bottomHeight += 40*(_btnArray.count-1) + titleView.frame.size.height;
-    
-    bottom = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width*0.9, bottomHeight)];
-    bottom.layer.cornerRadius = 5;
-    bottom.layer.masksToBounds = true;
+    bottomHeight += 40*(_btnArray.count-1) + self.titleView.frame.size.height;
+   
     
     if (_CancelButton) {
         bottomHeight += 56;
     }
     
-    allBottom = [[UIView alloc]initWithFrame:CGRectMake(width*0.05, height, width*0.9, bottomHeight)];
     
     
     
     CGFloat btnY = 0;
-    if (titleView) {
-        [bottom addSubview:titleView];
-        btnY += titleView.frame.size.height;
+    if (self.titleView) {
+        [self.bottom addSubview:self.titleView];
+        btnY += self.titleView.frame.size.height;
         
         //如果titleView中有内容
-        if (titleView.subviews.count > 0) {
+        if (self.titleView.subviews.count > 0) {
             btnY += 1;
         }
     }
     for (UIButton *btn in _btnArray) {
         CGRect rect = CGRectMake(0, btnY, width * 0.9, 39.5);
         btn.frame = rect;
-        [bottom addSubview:btn];
+        [self.bottom addSubview:btn];
         btnY += 40;
     }
     
-    [allBottom addSubview:bottom];
+    [self.allBottom addSubview:self.bottom];
     
     if (_CancelButton) {
         btnY += 8;
         CGRect rect = CGRectMake(0, btnY, width * 0.9, 39.5);
         _CancelButton.frame = rect;
-        [allBottom addSubview:_CancelButton];
+        [self.allBottom addSubview:_CancelButton];
     }
     
    
     [self addTheLayer];
-    [self addSubview:allBottom];
+    [self addSubview:self.allBottom];
     
     [UIView animateWithDuration:0.2 animations:^{
-        self->allBottom.frame = CGRectMake(self->width*0.05, self->height - bottomHeight, self->width*0.9, bottomHeight);
+        self.allBottom.frame = CGRectMake(self->width*0.05, self->height - self->bottomHeight, self->width*0.9, self->bottomHeight);
     }];
 }
 - (void)showInAnimate{
@@ -247,8 +245,8 @@
     InAnimate = YES;
     
     NSMutableArray *viewArray = [[NSMutableArray alloc]init];
-    if (titleView) {
-        [viewArray addObject:titleView];
+    if (self.titleView) {
+        [viewArray addObject:self.titleView];
     }
     [viewArray addObjectsFromArray:_btnArray];
     [self cornerRadiu:viewArray.firstObject];
@@ -284,9 +282,9 @@
             x = width;
             i = 1;
         }
-        if (j==0 && titleView) {
-            btnY -= titleView.frame.size.height;
-            CGRect rect = CGRectMake(x, btnY, width*0.9, titleView.frame.size.height);
+        if (j==0 && self.titleView) {
+            btnY -= self.titleView.frame.size.height;
+            CGRect rect = CGRectMake(x, btnY, width*0.9, self.titleView.frame.size.height);
             btn.frame = rect;
         }else{
             btnY -= 40;
@@ -296,7 +294,7 @@
         if (j == 1) {
             
             //如果titleView中有内容
-            if (titleView.subviews.count > 0) {
+            if (self.titleView.subviews.count > 0) {
                 btnY -= 3; //当为倒数第二个时  也就是接下来是第一个title Y往上多移10
             }
         }
@@ -337,15 +335,12 @@
 }
 -(void)addTheLayer{
     [[[UIApplication sharedApplication] keyWindow] addSubview:self];
-    layView = [[UIView alloc]initWithFrame:self.frame];
-    layView.backgroundColor = layerColor;
-    layView.alpha = 0;
-    [self addSubview:layView];
+    [self addSubview:self.layView];
     [UIView animateWithDuration:0.2 animations:^{
-        self->layView.alpha = 0.2;
+        self.layView.alpha = 0.2;
     }];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(close)];
-    [layView addGestureRecognizer:tap];
+    [self.layView addGestureRecognizer:tap];
     
 }
 /**
@@ -357,10 +352,10 @@
         return;
     }
     [UIView animateWithDuration:0.2 animations:^{
-        CGRect rect = self->allBottom.frame;
+        CGRect rect = self.allBottom.frame;
         rect.origin.y = self->height;
-        self->allBottom.frame = rect;
-        self->layView.alpha = 0;
+        self.allBottom.frame = rect;
+        self.layView.alpha = 0;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
@@ -370,8 +365,8 @@
    
     
     NSMutableArray *viewArray = [[NSMutableArray alloc]init];
-    if (titleView) {
-        [viewArray addObject:titleView];
+    if (self.titleView) {
+        [viewArray addObject:self.titleView];
     }
     [viewArray addObjectsFromArray:_btnArray];
     if (_CancelButton) {
@@ -409,7 +404,7 @@
     }];
     
     [UIView animateWithDuration:0.2 animations:^{
-        self->layView.alpha = 0;
+        self.layView.alpha = 0;
     }];
 
 }
@@ -443,6 +438,39 @@
     }
 }
 
+#pragma mark - getter & setter
+
+-(UIView *)bottom{
+    if (!_bottom) {
+        _bottom = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width*0.9, bottomHeight)];
+        _bottom.layer.cornerRadius = 5;
+        _bottom.layer.masksToBounds = true;
+    }
+    return _bottom;
+}
+-(UIView *)allBottom{
+    if (!_allBottom) {
+        _allBottom = [[UIView alloc]initWithFrame:CGRectMake(width*0.05, height, width*0.9, bottomHeight)];
+
+    }
+    return _allBottom;
+}
+-(UIView *)titleView{
+    if (!_titleView) {
+        _titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width * 0.9, 49.5)];
+        _titleView.backgroundColor = greenColor;
+
+    }
+    return _titleView;
+}
+-(UIView *)layView{
+    if (!_layView) {
+        _layView = [[UIView alloc]initWithFrame:self.frame];
+        _layView.backgroundColor = layerColor;
+        _layView.alpha = 0;
+    }
+    return _layView;
+}
 @end
 
 
