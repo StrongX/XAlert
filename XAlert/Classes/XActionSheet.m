@@ -33,6 +33,11 @@
 @property (nonatomic, strong) UIView *allBottom;
 @property (nonatomic, strong) UIView *titleView;
 @property (nonatomic, strong) UIView *layView;
+@property (nonatomic, strong) UIButton *cancelButton;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *descLabel;
+@property (nonatomic, strong) NSMutableArray<UIButton *> *btnArray;
+
 
 
 @end
@@ -41,36 +46,27 @@
 
 - (id)initWithTitleAndDesc:(NSString *)Title Desc:(NSString *)Desc{
     self = [self init];
-    _Title = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, width*0.9, 15)];
-    _Title.font = [UIFont systemFontOfSize:14];
-    [_Title setAdjustsFontSizeToFitWidth:true];
-    _Title.textColor = titleTextColor;
-    _Title.textAlignment = NSTextAlignmentCenter;
-    _Title.text = Title;
     
-    _Desc = [[UILabel alloc]initWithFrame:CGRectMake(0, 25, width*0.9, 15)];
-    [_Desc setAdjustsFontSizeToFitWidth:true];
-    _Desc.font = [UIFont systemFontOfSize:12];
-    _Desc.textColor = titleTextColor;
-    _Desc.textAlignment = NSTextAlignmentCenter;
-    _Desc.text = Desc;
-    
+    self.titleLabel.text = Title;
+    self.descLabel.text = Desc;
+
+   
     
     //无title 有desc
     if ( (Title == nil || [Title isEqualToString:@""]) && (Desc != nil && ![Desc isEqualToString:@""]) ) {
-        _Desc.frame = CGRectMake(0, 17, width*0.9, 15);
-        [self.titleView addSubview:_Desc];
+        self.descLabel.frame = CGRectMake(0, 17, width*0.9, 15);
+        [self.titleView addSubview:self.descLabel];
     }
     //无desc 有title
     else if( (Title != nil && ![Title isEqualToString:@""]) && (Desc == nil || [Desc isEqualToString:@""]) ) {
-        _Title.frame = CGRectMake(0, 17, width*0.9, 15);
-        [self.titleView addSubview:_Title];
+        self.titleLabel.frame = CGRectMake(0, 17, width*0.9, 15);
+        [self.titleView addSubview:self.titleLabel];
     }
     //有desc 有title
     else if ( (Title != nil && ![Title isEqualToString:@""]) && (Desc != nil && ![Desc isEqualToString:@""]) ) {
         
-        [self.titleView addSubview:_Title];
-        [self.titleView addSubview:_Desc];
+        [self.titleView addSubview:self.titleLabel];
+        [self.titleView addSubview:self.descLabel];
     }
     //无desc 无title
     else {
@@ -97,7 +93,7 @@
 - (void)setCancelButtonBackgroundColor:(UIColor *)color
 {
     if (color) {
-        _CancelButton.backgroundColor = color;
+        self.cancelButton.backgroundColor = color;
     }
 }
 
@@ -152,13 +148,8 @@
  *  添加取消按钮
  */
 -(void)addCancelButtonWithTitle:(NSString *)Title{
-    _CancelButton = [[UIButton alloc]init];
-    [_CancelButton setTitle:Title forState:normal];
-    _CancelButton.layer.cornerRadius = 5;
-    _CancelButton.layer.masksToBounds = true;
-    _CancelButton.backgroundColor = brownColor;
-    [_CancelButton setTitleColor:buttonTextColor forState:0];
-    [_CancelButton addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+    [self.cancelButton setTitle:Title forState:normal];
+
 }
 /**
  *  添加按钮
@@ -198,7 +189,7 @@
     bottomHeight += 40*(_btnArray.count-1) + self.titleView.frame.size.height;
    
     
-    if (_CancelButton) {
+    if (self.cancelButton) {
         bottomHeight += 56;
     }
     
@@ -224,11 +215,11 @@
     
     [self.allBottom addSubview:self.bottom];
     
-    if (_CancelButton) {
+    if (self.cancelButton) {
         btnY += 8;
         CGRect rect = CGRectMake(0, btnY, width * 0.9, 39.5);
-        _CancelButton.frame = rect;
-        [self.allBottom addSubview:_CancelButton];
+        self.cancelButton.frame = rect;
+        [self.allBottom addSubview:self.cancelButton];
     }
     
    
@@ -257,7 +248,7 @@
      *  i是一个标记位  1 表示从左边进入 0 表示从右边进入
      */
     CGFloat i = 1;
-    if (_CancelButton) {
+    if (self.cancelButton) {
         CGFloat x;
         if (i) {
             x = -width*0.9;
@@ -267,8 +258,8 @@
             i = 1;
         }
         CGRect rect = CGRectMake(x, btnY, width*0.9, 40);
-        _CancelButton.frame = rect;
-        [self addSubview:_CancelButton];
+        self.cancelButton.frame = rect;
+        [self addSubview:self.cancelButton];
         btnY -= 48;
     }
     btnY += 40;
@@ -304,7 +295,7 @@
     
     __block double delay = 0;
     double duration = 0.1 * viewArray.count + 0.1;
-    if (_CancelButton) {
+    if (self.cancelButton) {
         duration += 0.2;
     }
     
@@ -317,11 +308,11 @@
            }];
            delay = delay + 0.2;
        }
-       if (self->_CancelButton) {
+       if (self.cancelButton) {
            [UIView addKeyframeWithRelativeStartTime:delay relativeDuration:0.2 animations:^{
-               CGRect rect = self->_CancelButton.frame;
+               CGRect rect = self.cancelButton.frame;
                rect.origin.x = self->width * 0.05;
-               self->_CancelButton.frame = rect;
+               self.cancelButton.frame = rect;
            }];
            delay = delay + 0.2;
        }
@@ -369,8 +360,8 @@
         [viewArray addObject:self.titleView];
     }
     [viewArray addObjectsFromArray:_btnArray];
-    if (_CancelButton) {
-        [viewArray addObject:_CancelButton];
+    if (self.cancelButton) {
+        [viewArray addObject:self.cancelButton];
     }
     
     /**
@@ -380,7 +371,7 @@
     
     __block double delay = 0;
     double duration = 0.1 * viewArray.count + 0.1;
-    if (_CancelButton) {
+    if (self.cancelButton) {
         duration += 0.1;
     }
     
@@ -470,6 +461,38 @@
         _layView.alpha = 0;
     }
     return _layView;
+}
+-(UILabel *)TitleLabel{
+    if (!_titleLabel) {
+        _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, width*0.9, 15)];
+        _titleLabel.font = [UIFont systemFontOfSize:14];
+        [_titleLabel setAdjustsFontSizeToFitWidth:true];
+        _titleLabel.textColor = titleTextColor;
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _titleLabel;
+}
+-(UILabel *)descLabel{
+    if (!_descLabel) {
+        _descLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 25, width*0.9, 15)];
+        [_descLabel setAdjustsFontSizeToFitWidth:true];
+        _descLabel.font = [UIFont systemFontOfSize:12];
+        _descLabel.textColor = titleTextColor;
+        _descLabel.textAlignment = NSTextAlignmentCenter;
+        
+    }
+    return _descLabel;
+}
+-(UIButton *)cancelButton{
+    if (!_cancelButton) {
+        _cancelButton = [[UIButton alloc]init];
+        _cancelButton.layer.cornerRadius = 5;
+        _cancelButton.layer.masksToBounds = true;
+        _cancelButton.backgroundColor = brownColor;
+        [_cancelButton setTitleColor:buttonTextColor forState:0];
+        [_cancelButton addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _cancelButton;
 }
 @end
 

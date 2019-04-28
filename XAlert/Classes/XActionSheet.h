@@ -55,9 +55,5 @@
  */
 - (void)setTitleBackgroundColor:(UIColor *)color;
 
-@property (nonatomic, strong) UILabel *Title;
-@property (nonatomic, strong) UILabel *Desc;
-@property (nonatomic, strong) UIButton *CancelButton;
-@property (nonatomic, strong) NSMutableArray<UIButton *> *btnArray;
 
 @end
