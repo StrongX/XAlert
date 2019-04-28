@@ -213,6 +213,9 @@
         btnY += 40;
     }
     
+    [self cornerTopRadiu:self.titleView];
+    [self cornerBottomRadiu:_btnArray.lastObject];
+    
     [self.allBottom addSubview:self.bottom];
     
     if (self.cancelButton) {
@@ -240,7 +243,6 @@
         [viewArray addObject:self.titleView];
     }
     [viewArray addObjectsFromArray:_btnArray];
-    [self cornerRadiu:viewArray.firstObject];
     
     
     CGFloat btnY = height - 8 - 40;
@@ -292,6 +294,8 @@
         [self addSubview:btn];
     }
     
+    [self cornerTopRadiu:viewArray.firstObject];
+    [self cornerBottomRadiu:viewArray.lastObject];
     
     __block double delay = 0;
     double duration = 0.1 * viewArray.count + 0.1;
@@ -402,9 +406,17 @@
 /**
  *  画上面两个圆角
  */
-- (void)cornerRadiu:(UIView *)view{
+- (void)cornerTopRadiu:(UIView *)view{
     
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(5, 5)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = view.bounds;
+    maskLayer.path = maskPath.CGPath;
+    view.layer.mask = maskLayer;
+}
+- (void)cornerBottomRadiu:(UIView *)view{
+    
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
     maskLayer.frame = view.bounds;
     maskLayer.path = maskPath.CGPath;
@@ -434,8 +446,8 @@
 -(UIView *)bottom{
     if (!_bottom) {
         _bottom = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width*0.9, bottomHeight)];
-        _bottom.layer.cornerRadius = 5;
-        _bottom.layer.masksToBounds = true;
+//        _bottom.layer.cornerRadius = 5;
+//        _bottom.layer.masksToBounds = true;
     }
     return _bottom;
 }
@@ -462,7 +474,7 @@
     }
     return _layView;
 }
--(UILabel *)TitleLabel{
+-(UILabel *)titleLabel{
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, width*0.9, 15)];
         _titleLabel.font = [UIFont systemFontOfSize:14];
